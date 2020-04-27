@@ -1,0 +1,11 @@
+<h3>以下の内容で、送信する。</h3>
+<%= form_with(model: @user, url: users_path, local: true ) do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :email %>
+  <p>タイトル:<%= @user.name %></p>
+  <p>本文:<%= @user.email %></p>
+  <p>画像:<%= image_tag(@user.face.url)if @user.face && @user.face.url %></p>
+  <%= form.hidden_field :face_cache %>
+  <%= form.submit  "登録する" %>
+  <%= form.submit "戻る", name: 'back' %>
+<% end %>

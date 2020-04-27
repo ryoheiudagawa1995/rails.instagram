@@ -12,8 +12,8 @@
 
 <p>
   <strong>Face:</strong>
-  <%= @user.face %>
+  <%= image_tag(@picture.face.url) %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to '編集', edit_user_path(@user) %> |
+<%= link_to '戻る', users_path %>

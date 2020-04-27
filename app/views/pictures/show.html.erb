@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @picture.title %>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @picture.image %>
+  <strong>内容:</strong>
+  <%= @picture.title %>
+</p>
+
+<p>
+  <strong>画像:</strong>
+  <%= image_tag(@picture.image.url) %>
 </p>
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |

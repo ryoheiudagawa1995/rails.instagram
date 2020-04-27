@@ -1,44 +1,32 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-
-  # GET /pictures
-  # GET /pictures.json
   def index
     @pictures = Picture.all
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
   end
 
-  # GET /pictures/new
   def new
     @picture = Picture.new
   end
 
-  # GET /pictures/1/edit
   def edit
   end
 
-  # POST /pictures
-  # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
-
-    respond_to do |format|
+    if params[:back]
+      render :new
+    else
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
+        redirect_to pictures_path, notice: "投稿を作成しました！"
       else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
 
-  # PATCH/PUT /pictures/1
-  # PATCH/PUT /pictures/1.json
   def update
     respond_to do |format|
       if @picture.update(picture_params)
@@ -51,8 +39,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # DELETE /pictures/1
-  # DELETE /pictures/1.json
   def destroy
     @picture.destroy
     respond_to do |format|
@@ -61,14 +47,16 @@ class PicturesController < ApplicationController
     end
   end
 
+  def confirm
+    @picture = Picture.new(picture_params)
+    render :new if @picture.invalid?
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_picture
       @picture = Picture.find(params[:id])
     end
-
-    # Only allow a list of trusted parameters through.
     def picture_params
-      params.require(:picture).permit(:title, :image)
+      params.require(:picture).permit(:title, :content, :image, :image_cache)
     end
 end
