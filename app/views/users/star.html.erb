@@ -1,0 +1,14 @@
+<table>
+  <tbody>
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td><%= picture.title %></td>
+        <td><%= picture.content %></td>
+        <td><%= image_tag(picture.image.url) %></td>
+        <td><%= picture.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '投稿一覧', pictures_path %>

@@ -5,6 +5,7 @@ class PicturesController < ApplicationController
   end
 
   def show
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
   def new
@@ -16,10 +17,12 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
     if params[:back]
       render :new
     else
       if @picture.save
+        UserMailer.user_mail(@picture).deliver
         redirect_to pictures_path, notice: "投稿を作成しました！"
       else
         render :new
@@ -28,13 +31,13 @@ class PicturesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
+    if @picture.user.id == current_user.id
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
+        redirect_to @picture, notice: 'Picture was successfully updated.'
+        render :show, status: :ok, location: @picture
       else
-        format.html { render :edit }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        render :edit
+        render json: @picture.errors, status: :unprocessable_entity
       end
     end
   end
@@ -49,6 +52,7 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
     render :new if @picture.invalid?
   end
 

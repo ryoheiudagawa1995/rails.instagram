@@ -1,0 +1,10 @@
+<h1>お問い合わせが完了しました！</h1>
+<h4>お問い合わせ内容の確認</h4>
+<table>
+  <tbody>
+    <td><%= @picture.title %></td>
+    <td><%= @picture.content %></td>
+    <td><%= image_tag(@picture.image.url) %></td>
+    <td><%= @picture.user.name %></td>
+  </tbody>
+</table>

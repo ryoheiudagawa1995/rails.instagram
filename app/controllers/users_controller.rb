@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def star
+    @pictures = current_user.favorite_pictures
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -30,13 +34,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
+    if @user.id == current_user.id
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        redirect_to @user, notice: 'User was successfully updated.'
+        render :show, status: :ok, location: @user
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :edit
+        render json: @user.errors, status: :unprocessable_entity 
       end
     end
   end
