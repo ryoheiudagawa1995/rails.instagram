@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Image</th>
+      <th>title</th>
+      <th>content</th>
+      <th>image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +15,12 @@
         <td><%= picture.content %></td>
         <td><%= image_tag(picture.image.url) %></td>
         <td><%= picture.user.name %></td>
-        <% if picture.user.id == current_user.id %>
-          <td><%= link_to '詳細', picture %></td>
-          <td><%= link_to '編集', edit_picture_path(picture) %></td>
-          <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか' } %></td>
+        <% if logged_in? %>
+          <% if picture.user.id == current_user.id %>
+            <td><%= link_to '詳細', picture %></td>
+            <td><%= link_to '編集', edit_picture_path(picture) %></td>
+            <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか' } %></td>
+            <% end %>
         <% end %>
       </tr>
     <% end %>
@@ -27,5 +28,6 @@
 </table>
 
 <br>
-
-<%= link_to '新規投稿', new_picture_path %>
+<% if current_user.present? %>
+  <%= link_to '新規投稿', new_picture_path %>
+<% end %>

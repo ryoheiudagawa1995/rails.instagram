@@ -12,7 +12,7 @@
 
 
     <header>
-      <%= link_to "Onstgram", pictures_path %>
+      <%= link_to "投稿一覧", pictures_path %>
       <% if logged_in? %>
         <%= link_to "プロフィール", user_path(current_user.id) %>
         <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
@@ -24,6 +24,7 @@
         <%= link_to "お気に入り一覧", star_users_path %>
       <% end %>
     </header>
+    <p id="notice"><%= notice %></p>
     <%= yield %>
   </body>
 </html>

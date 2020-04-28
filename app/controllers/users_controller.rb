@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         render :show, status: :ok, location: @user
       else
         render :edit
-        render json: @user.errors, status: :unprocessable_entity 
+        render json: @user.errors, status: :unprocessable_entity
       end
     end
   end
@@ -59,11 +59,11 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:name, :email, :face, :face_cache, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :face, :face_cache, :password, :password_confirmation)
+  end
 end
