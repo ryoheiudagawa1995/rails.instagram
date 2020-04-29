@@ -1,12 +1,36 @@
+header {
+  width: 100%;
+  background-color: gray;
+  length: 100%;
+}
 body {
   background-color: #fff;
   color: #333;
-  margin: 33px;
+  margin: 0px;
+  -webkit-text-size-adjust: 100%;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
+.onstgram {
+  overflow: scroll;
+  height: 550px;
+}
 
+.picture {
+  width: 50%;
+  margin: 1rem auto;
+  text-align: center;
+  background-color: gray;
+  padding: 2rem;
+}
+
+footer {
+  width: 100%;
+  background-color: gray;
+  position: absolute;
+  bottom: 0;
+}
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -20,7 +44,7 @@ pre {
 }
 
 a {
-  color: #000;
+  color: black;
 
   &:visited {
     color: #666;

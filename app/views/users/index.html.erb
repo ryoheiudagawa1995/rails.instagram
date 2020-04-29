@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Users</h1>
 
-<table>
+<table width="80%">
   <thead>
     <tr>
       <th>name</th>
@@ -15,9 +15,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= image_tag(user.face.url) %></td>
+        <td width="20%"><%= user.name %></td>
+        <td width="50%"><%= user.email %></td>
+        <td width="30%"><%= image_tag(user.face.url) %></td>
         <% if logged_in? %>
           <% if user.id == current_user.id %>
             <td><%= link_to '詳細', user %></td>
@@ -31,5 +31,3 @@
 </table>
 
 <br>
-
-<%= link_to '新規登録', new_user_path %>

@@ -1,33 +1,20 @@
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>content</th>
-      <th>image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= picture.title %></td>
-        <td><%= picture.content %></td>
-        <td><%= image_tag(picture.image.url) %></td>
-        <td><%= picture.user.name %></td>
-        <% if logged_in? %>
-          <% if picture.user.id == current_user.id %>
-            <td><%= link_to '詳細', picture %></td>
-            <td><%= link_to '編集', edit_picture_path(picture) %></td>
-            <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか' } %></td>
-            <% end %>
+<div class="onstgram">
+  <% @pictures.each do |picture| %>
+    <article class="picture">
+      <p>タイトル:<%= picture.title %></p>
+      <%= picture.content %>
+      <br>
+      <%= image_tag(picture.image.url) %>
+      <br>
+      <%= picture.user.name %>
+      <br>
+      <% if logged_in? %>
+        <% if picture.user.id == current_user.id %>
+          <%= link_to '詳細', picture %>
+          <%= link_to '編集', edit_picture_path(picture) %>
+          <%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除していいですか' } %>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if current_user.present? %>
-  <%= link_to '新規投稿', new_picture_path %>
-<% end %>
+      <% end %>
+    </article>
+  <% end %>
+</div>
