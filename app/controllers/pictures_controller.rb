@@ -33,7 +33,7 @@ class PicturesController < ApplicationController
   def update
     if @picture.user.id == current_user.id
       if @picture.update(picture_params)
-        redirect_to @picture, notice: 'Picture was successfully updated.'
+        redirect_to @picture, notice: '編集しました！'
         render :show, status: :ok, location: @picture
       else
         render :edit
@@ -45,7 +45,7 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+      format.html { redirect_to pictures_url, notice: '削除しました。' }
       format.json { head :no_content }
     end
   end

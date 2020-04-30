@@ -12,9 +12,12 @@ body {
   font-size: 13px;
   line-height: 18px;
 }
+.content {
+  margin: 1rem;
+}
+
 .onstgram {
   overflow: scroll;
-  height: 550px;
 }
 
 .picture {
@@ -23,6 +26,10 @@ body {
   text-align: center;
   background-color: gray;
   padding: 2rem;
+}
+
+.user {
+  overflow: scroll;
 }
 
 footer {
