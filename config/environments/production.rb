@@ -20,7 +20,7 @@ Rails.application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { host: 'hidden-depths-89919.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'morning-hollows-33077.herokuapp.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
