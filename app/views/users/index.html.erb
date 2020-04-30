@@ -15,14 +15,13 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td width="25%"><%= user.name %></td>
+          <td width="20%"><%= user.name %></td>
           <td width="40%"><%= user.email %></td>
           <td width="20%"><%= image_tag(user.face.url) %></td>
           <% if logged_in? %>
             <% if user.id == current_user.id %>
-              <td width="5%"><%= link_to '詳細', user %></td>
-              <td width="5%"><%= link_to '編集', edit_user_path(user) %></td>
-              <td width="5%"><%= link_to '削除', user, method: :delete, data: { confirm: '本当に削除していいですか' } %></td>
+              <td width="10%"><%= link_to '詳細', user %></td>
+              <td width="10%"><%= link_to '編集', edit_user_path(user) %></td>
             <% end %>
           <% end %>
         </tr>
