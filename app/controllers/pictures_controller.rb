@@ -33,10 +33,8 @@ class PicturesController < ApplicationController
     if @picture.user.id == current_user.id
       if @picture.update(picture_params)
         redirect_to @picture, notice: '編集しました！'
-        render :show, status: :ok, location: @picture
       else
         render :edit
-        render json: @picture.errors, status: :unprocessable_entity
       end
     end
   end

@@ -36,11 +36,9 @@ class UsersController < ApplicationController
   def update
     if @user.id == current_user.id
       if @user.update(user_params)
-        redirect_to @user, notice: 'User was successfully updated.'
-        render :show, status: :ok, location: @user
+        redirect_to @user, notice: '編集しました！'
       else
         render :edit
-        render json: @user.errors, status: :unprocessable_entity
       end
     end
   end
